@@ -32,6 +32,13 @@
 #include "sds/sds.h"
 #include "trace_filter.h"
 
+#ifndef TSRMLS_D
+#define TSRMLS_D void
+#define TSRMLS_DC
+#define TSRMLS_C
+#define TSRMLS_CC
+#define TSRMLS_FETCH()
+#endif
 
 /**
  * Trace Global
@@ -695,7 +702,7 @@ static void frame_build(pt_frame_t *frame, zend_bool internal, unsigned char typ
              * There is also a bug "#64239 Debug backtrace changed behavior
              * since 5.4.10 or 5.4.11" about this
              * https://bugs.php.net/bug.php?id=64239.*/
-            frame->function = sdsnew(P7_STR(zend_resolve_method_name(P7_EX_OBJ(ex) ? P7_EX_OBJCE(ex) : zf->common.scope, zf)));
+//            frame->function = sdsnew(P7_STR(zend_resolve_method_name(P7_EX_OBJ(ex) ? P7_EX_OBJCE(ex) : zf->common.scope, zf)));
 #endif
         } else {
             frame->function = sdsnew(P7_STR(zf->common.function_name));

@@ -212,7 +212,7 @@ void pt_type_display_frame(pt_frame_t *frame, int indent, const char *format, ..
 
     /* TODO output relative filepath */
     if (has_color()) {
-        printf(" called at [" PTC_BBLACK "%s:%d" PTC_RESET "]", frame->filename, frame->lineno);
+        printf(" called at [" PTC_BWHITE "%s:%d" PTC_RESET "]", frame->filename, frame->lineno);
     } else {
         printf(" called at [%s:%d]", frame->filename, frame->lineno);
     }
